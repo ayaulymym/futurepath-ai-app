@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 
 const TEST_PRICE = 5000;
 
-const PAYMENT_INFO = {
+const PAYMENT_METHODS = {
   kaspi: {
-    name: "Аяулым Е",
-    phone: "87089490860",
+    name: "Мөлдір Т",
+    phone: "87023987308",
     title: "Kaspi",
     url: "https://kaspi.kz",
   },
@@ -20,7 +20,7 @@ const PAYMENT_INFO = {
   },
 } as const;
 
-type PaymentMethod = keyof typeof PAYMENT_INFO;
+type PaymentMethod = keyof typeof PAYMENT_METHODS;
 
 export default function PaymentPage() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function PaymentPage() {
   const [method, setMethod] = useState<PaymentMethod>("kaspi");
   const [copied, setCopied] = useState(false);
 
-  const payment = PAYMENT_INFO[method];
+  const payment = PAYMENT_METHODS[method];
 
   async function copyPhone() {
     try {
@@ -39,25 +39,18 @@ export default function PaymentPage() {
         setCopied(false);
       }, 2000);
     } catch {
-      alert("Телефон нөмірін көшіру мүмкін болмады.");
+      alert("Нөмірді көшіру мүмкін болмады.");
     }
   }
-
-  function openBankApp() {
+  function openBank() {
     window.open(payment.url, "_blank", "noopener,noreferrer");
   }
-
   function submitPayment() {
-    localStorage.setItem(
-      "futurepath_payment_method",
-      method
-    );
-
+    localStorage.setItem("futurepath_payment_method", method);
     localStorage.setItem(
       "futurepath_payment_amount",
       String(TEST_PRICE)
     );
-
     localStorage.setItem(
       "futurepath_payment_status",
       "pending"
@@ -85,7 +78,7 @@ export default function PaymentPage() {
 
         <section className="rounded-3xl bg-white p-6 shadow-xl md:p-8">
           <div className="rounded-2xl bg-purple-50 p-6 text-center">
-            <p className="text-sm font-medium text-slate-500">
+            <p className="text-sm text-slate-500">
               Тест бағасы
             </p>
 
@@ -94,42 +87,40 @@ export default function PaymentPage() {
             </p>
           </div>
 
-          <div className="mt-8">
-            <h2 className="text-xl font-bold text-slate-900">
-              Төлем тәсілін таңдаңыз
-            </h2>
+          <h2 className="mt-8 text-xl font-bold text-slate-900">
+            Төлем тәсілін таңдаңыз
+          </h2>
 
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setMethod("kaspi");
-                  setCopied(false);
-                }}
-                className={`rounded-2xl border-2 px-4 py-4 font-bold transition ${
-                  method === "kaspi"
-                    ? "border-purple-600 bg-purple-50 text-purple-700"
-                    : "border-slate-200 bg-white text-slate-700 hover:border-purple-300"
-                }`}
-              >
-                Kaspi
-              </button>
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setMethod("kaspi");
+                setCopied(false);
+              }}
+              className={`rounded-2xl border-2 px-4 py-4 font-bold transition ${
+                method === "kaspi"
+                  ? "border-purple-600 bg-purple-50 text-purple-700"
+                  : "border-slate-200 bg-white text-slate-700 hover:border-purple-300"
+              }`}
+            >
+              Kaspi
+            </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setMethod("halyk");
-                  setCopied(false);
-                }}
-                className={`rounded-2xl border-2 px-4 py-4 font-bold transition ${
-                  method === "halyk"
-                    ? "border-purple-600 bg-purple-50 text-purple-700"
-                    : "border-slate-200 bg-white text-slate-700 hover:border-purple-300"
-                }`}
-              >
-                Halyk
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setMethod("halyk");
+                setCopied(false);
+              }}
+              className={`rounded-2xl border-2 px-4 py-4 font-bold transition ${
+                method === "halyk"
+                  ? "border-purple-600 bg-purple-50 text-purple-700"
+                  : "border-slate-200 bg-white text-slate-700 hover:border-purple-300"
+              }`}
+            >
+              Halyk
+            </button>
           </div>
 
           <div className="mt-6 rounded-2xl border-2 border-slate-200 p-5">
@@ -155,7 +146,7 @@ export default function PaymentPage() {
               <button
                 type="button"
                 onClick={copyPhone}
-                className="shrink-0 rounded-xl bg-purple-600 px-4 py-3 font-semibold text-white transition hover:bg-purple-700"
+                className="shrink-0 rounded-xl bg-purple-600 px-4 py-3 font-semibold text-white hover:bg-purple-700"
               >
                 {copied ? "Көшірілді" : "Көшіру"}
               </button>
@@ -167,32 +158,32 @@ export default function PaymentPage() {
               Төлем жасау тәртібі
             </h3>
 
-            <ol className="mt-3 space-y-2 text-sm leading-6 text-slate-600">
-              <li>
+            <div className="mt-3 space-y-2 text-sm leading-6 text-slate-600">
+              <p>
                 1. {payment.title} қосымшасын ашыңыз.
-              </li>
+              </p>
 
-              <li>
+              <p>
                 2. {payment.phone} нөміріне{" "}
                 {TEST_PRICE.toLocaleString("kk-KZ")} ₸ аударыңыз.
-              </li>
+              </p>
 
-              <li>
+              <p>
                 3. Алушының аты-жөнін тексеріңіз:{" "}
                 <strong>{payment.name}</strong>.
-              </li>
+              </p>
 
-              <li>
+              <p>
                 4. Төлем жасалғаннан кейін
                 «Төлем жасадым» батырмасын басыңыз.
-              </li>
-            </ol>
+              </p>
+            </div>
           </div>
 
           <button
             type="button"
-            onClick={openBankApp}
-            className="mt-6 w-full rounded-2xl bg-purple-600 px-5 py-4 font-bold text-white transition hover:bg-purple-700"
+            onClick={openBank}
+            className="mt-6 w-full rounded-2xl bg-purple-600 px-5 py-4 font-bold text-white hover:bg-purple-700"
           >
             {payment.title} қосымшасын ашу
           </button>
@@ -200,21 +191,16 @@ export default function PaymentPage() {
           <button
             type="button"
             onClick={submitPayment}
-            className="mt-3 w-full rounded-2xl border-2 border-purple-600 bg-white px-5 py-4 font-bold text-purple-700 transition hover:bg-purple-50"
+            className="mt-3 w-full rounded-2xl border-2 border-purple-600 px-5 py-4 font-bold text-purple-700 hover:bg-purple-50"
           >
             Төлем жасадым
           </button>
 
           <p className="mt-5 text-center text-xs leading-5 text-slate-400">
-            Төлем жасалғаннан кейін өтініміңіз әкімшінің
-            тексеруіне жіберіледі. Тест төлем расталғаннан
-            кейін ғана ашылады.
+            Төлем жасағаннан кейін өтініміңіз администратордың
+            тексеруіне жіберіледі.
           </p>
         </section>
-
-        <p className="mt-6 text-center text-sm text-slate-400">
-          FuturePath AI
-        </p>
       </div>
     </main>
   );

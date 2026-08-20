@@ -21,7 +21,6 @@ const content = {
     learn: "Толығырақ",
     universities: "🎓 Университеттер",
     globalMap: "🌍 Global Map",
-    scholarships: "💰 Стипендиялар",
     featureLabel: "FUTUREPATH AI",
     featureTitle: "Болашағыңды бір жерде жоспарла",
     featureDescription:
@@ -87,7 +86,6 @@ const content = {
     learn: "Подробнее",
     universities: "🎓 Университеты",
     globalMap: "🌍 Global Map",
-    scholarships: "💰 Стипендии",
     featureLabel: "FUTUREPATH AI",
     featureTitle: "Планируй будущее в одном месте",
     featureDescription:
@@ -153,7 +151,6 @@ const content = {
     learn: "Learn more",
     universities: "🎓 Universities",
     globalMap: "🌍 Global Map",
-    scholarships: "💰 Scholarships",
     featureLabel: "FUTUREPATH AI",
     featureTitle: "Plan your future in one place",
     featureDescription:
@@ -215,54 +212,65 @@ export default function Home() {
 
       {/* NAVBAR */}
       <nav className="border-b border-purple-500/10 bg-[#090014]/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 sm:py-5">
 
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-violet-700 font-bold">
+          <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-violet-700 font-bold sm:h-10 sm:w-10">
               F
             </div>
 
-            <span className="text-xl font-bold">
+            <span className="text-lg font-bold sm:text-xl">
               FuturePath<span className="text-purple-400"> AI</span>
             </span>
           </Link>
 
+          {/* DESKTOP NAVIGATION */}
           <div className="hidden gap-8 text-sm text-gray-400 md:flex">
-
-            <a href="#features" className="hover:text-purple-300">
+            <a
+              href="#features"
+              className="hover:text-purple-300"
+            >
               {t.navFeatures}
             </a>
 
-            <a href="#how" className="hover:text-purple-300">
+            <a
+              href="#how"
+              className="hover:text-purple-300"
+            >
               {t.navHow}
             </a>
 
-            <a href="#about" className="hover:text-purple-300">
+            <a
+              href="#about"
+              className="hover:text-purple-300"
+            >
               {t.navAbout}
             </a>
 
-            <Link href="/universities" className="hover:text-purple-300">
+            <Link
+              href="/universities"
+              className="hover:text-purple-300"
+            >
               {t.universities}
             </Link>
 
-            <Link href="/scholarships" className="hover:text-purple-300">
-              {t.scholarships}
-            </Link>
-
-            <Link href="/map" className="hover:text-purple-300">
+            <Link
+              href="/map"
+              className="hover:text-purple-300"
+            >
               {t.globalMap}
             </Link>
-
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
 
-            <div className="hidden rounded-xl border border-white/10 bg-white/5 p-1 sm:flex">
+            {/* LANGUAGE SWITCHER */}
+            <div className="flex shrink-0 rounded-xl border border-white/10 bg-white/5 p-1">
               {(["kz", "ru", "en"] as Language[]).map((lang) => (
                 <button
                   key={lang}
                   onClick={() => setLanguage(lang)}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                  className={`rounded-lg px-2 py-1.5 text-[10px] font-medium transition sm:px-3 sm:text-xs ${
                     language === lang
                       ? "bg-purple-600 text-white"
                       : "text-gray-400 hover:text-white"
@@ -277,16 +285,18 @@ export default function Home() {
               ))}
             </div>
 
+            {/* LOGIN */}
             <Link
               href="/auth/login"
-              className="rounded-xl px-4 py-2.5 text-sm text-gray-300 hover:bg-white/5"
+              className="hidden rounded-xl px-3 py-2 text-sm text-gray-300 hover:bg-white/5 sm:block sm:px-4"
             >
               {t.login}
             </Link>
 
+            {/* REGISTER */}
             <Link
               href="/auth/register"
-              className="rounded-xl bg-purple-600 px-5 py-2.5 text-sm font-semibold hover:bg-purple-500"
+              className="hidden rounded-xl bg-purple-600 px-3 py-2 text-xs font-semibold hover:bg-purple-500 sm:block sm:px-5 sm:py-2.5 sm:text-sm"
             >
               {t.register}
             </Link>
@@ -299,13 +309,13 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute left-1/2 top-[-200px] h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-purple-700/20 blur-[120px]" />
 
-        <div className="relative mx-auto max-w-6xl px-6 py-28 text-center">
+        <div className="relative mx-auto max-w-6xl px-5 py-20 text-center sm:px-6 sm:py-28">
 
-          <div className="mx-auto mb-6 inline-block rounded-full border border-purple-500/20 bg-purple-500/10 px-5 py-2 text-sm text-purple-300">
+          <div className="mx-auto mb-6 inline-block rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-2 text-xs text-purple-300 sm:px-5 sm:text-sm">
             ✨ {t.badge}
           </div>
 
-          <h1 className="text-5xl font-bold leading-tight sm:text-7xl">
+          <h1 className="text-4xl font-bold leading-tight sm:text-7xl">
             {t.title1}
 
             <span className="block bg-gradient-to-r from-purple-300 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
@@ -313,12 +323,13 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-gray-400">
+          <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
             {t.description}
           </p>
 
-          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
 
+            {/* CAREER TEST */}
             <Link
               href="/payment"
               className="rounded-2xl bg-purple-600 px-8 py-4 font-semibold shadow-xl shadow-purple-900/30 hover:bg-purple-500"
@@ -326,6 +337,7 @@ export default function Home() {
               {t.start}
             </Link>
 
+            {/* UNIVERSITIES */}
             <Link
               href="/universities"
               className="rounded-2xl border border-white/10 bg-white/5 px-8 py-4 font-semibold text-gray-300 hover:bg-white/10"
@@ -333,13 +345,7 @@ export default function Home() {
               {t.universities}
             </Link>
 
-            <Link
-              href="/scholarships"
-              className="rounded-2xl border border-white/10 bg-white/5 px-8 py-4 font-semibold text-gray-300 hover:bg-white/10"
-            >
-              {t.scholarships}
-            </Link>
-
+            {/* GLOBAL MAP */}
             <Link
               href="/map"
               className="rounded-2xl border border-purple-500/30 bg-purple-500/10 px-8 py-4 font-semibold text-purple-200 hover:bg-purple-500/20"
@@ -352,23 +358,24 @@ export default function Home() {
       </section>
 
       {/* FEATURES */}
-      <section id="features" className="border-t border-white/5 py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section
+        id="features"
+        className="border-t border-white/5 py-20 sm:py-24"
+      >
+        <div className="mx-auto max-w-7xl px-5 sm:px-6">
 
           <div className="max-w-2xl">
-
             <p className="text-sm font-semibold text-purple-400">
               {t.featureLabel}
             </p>
 
-            <h2 className="mt-3 text-4xl font-bold">
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
               {t.featureTitle}
             </h2>
 
             <p className="mt-4 text-gray-400">
               {t.featureDescription}
             </p>
-
           </div>
 
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -386,15 +393,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* UNIVERSITY + SCHOLARSHIP + MAP */}
-      <section className="border-t border-white/5 py-20">
-        <div className="mx-auto grid max-w-7xl gap-5 px-6 md:grid-cols-3">
+      {/* UNIVERSITY + GLOBAL MAP */}
+      <section className="border-t border-white/5 py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-5 px-5 sm:px-6 md:grid-cols-2">
 
           <Link
             href="/universities"
-            className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-purple-500/40 hover:bg-purple-500/[0.05]"
+            className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition hover:border-purple-500/40 hover:bg-purple-500/[0.05] sm:p-8"
           >
-            <div className="text-4xl">🎓</div>
+            <div className="text-4xl">
+              🎓
+            </div>
 
             <h2 className="mt-5 text-2xl font-bold">
               {t.universities}
@@ -411,38 +420,20 @@ export default function Home() {
           </Link>
 
           <Link
-            href="/scholarships"
-            className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-purple-500/40 hover:bg-purple-500/[0.05]"
-          >
-            <div className="text-4xl">💰</div>
-
-            <h2 className="mt-5 text-2xl font-bold">
-              {t.scholarships}
-            </h2>
-
-            <p className="mt-3 leading-7 text-gray-400">
-              Халықаралық гранттар мен стипендияларды қарап,
-              өзіңе сәйкес қаржылық мүмкіндіктерді тап.
-            </p>
-
-            <div className="mt-6 font-semibold text-purple-400">
-              Стипендияларды ашу →
-            </div>
-          </Link>
-
-          <Link
             href="/map"
-            className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-purple-500/40 hover:bg-purple-500/[0.05]"
+            className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition hover:border-purple-500/40 hover:bg-purple-500/[0.05] sm:p-8"
           >
-            <div className="text-4xl">🌍</div>
+            <div className="text-4xl">
+              🌍
+            </div>
 
             <h2 className="mt-5 text-2xl font-bold">
               {t.globalMap}
             </h2>
 
             <p className="mt-3 leading-7 text-gray-400">
-              Әлем университеттерін картадан қарап,
-              елдер мен қалалар бойынша оқу орындарын зертте.
+              Әлем университеттерін картадан қарап, елдер мен
+              қалалар бойынша оқу орындарын зертте.
             </p>
 
             <div className="mt-6 font-semibold text-purple-400">
@@ -454,14 +445,17 @@ export default function Home() {
       </section>
 
       {/* HOW */}
-      <section id="how" className="bg-purple-950/20 py-24">
-        <div className="mx-auto max-w-6xl px-6 text-center">
+      <section
+        id="how"
+        className="bg-purple-950/20 py-20 sm:py-24"
+      >
+        <div className="mx-auto max-w-6xl px-5 text-center sm:px-6">
 
           <p className="text-sm font-semibold text-purple-400">
             {t.howLabel}
           </p>
 
-          <h2 className="mt-3 text-4xl font-bold">
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
             {t.howTitle}
           </h2>
 
@@ -481,12 +475,15 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section id="about" className="py-24">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+      <section
+        id="about"
+        className="py-20 sm:py-24"
+      >
+        <div className="mx-auto max-w-4xl px-5 text-center sm:px-6">
 
-          <div className="rounded-[32px] border border-purple-500/20 bg-gradient-to-br from-purple-900/40 to-violet-950/20 p-12">
+          <div className="rounded-[32px] border border-purple-500/20 bg-gradient-to-br from-purple-900/40 to-violet-950/20 p-8 sm:p-12">
 
-            <h2 className="text-4xl font-bold">
+            <h2 className="text-3xl font-bold sm:text-4xl">
               {t.ctaTitle}
             </h2>
 
@@ -507,9 +504,11 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer className="border-t border-white/5 py-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 text-sm text-gray-500 sm:flex-row sm:justify-between">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 text-sm text-gray-500 sm:flex-row sm:justify-between sm:px-6">
 
-          <span>{t.footer}</span>
+          <span>
+            {t.footer}
+          </span>
 
           <div className="flex flex-wrap gap-3">
 
@@ -518,15 +517,6 @@ export default function Home() {
               className="hover:text-purple-400"
             >
               {t.universities}
-            </Link>
-
-            <span>·</span>
-
-            <Link
-              href="/scholarships"
-              className="hover:text-purple-400"
-            >
-              {t.scholarships}
             </Link>
 
             <span>·</span>
@@ -591,18 +581,8 @@ function Feature({
   title: string;
   text: string;
 }) {
-  const isCareerTest = title === "Career Test";
-
-  const isUniversity =
-    title === "Университеттер" ||
-    title === "Universities";
-
-  const isScholarship =
-    title === "Стипендиялар" ||
-    title === "Scholarships";
-
-  const card = (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition hover:-translate-y-1 hover:border-purple-500/30 hover:bg-purple-500/[0.05]">
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-7 transition hover:border-purple-500/30 hover:bg-purple-500/[0.05]">
 
       <div className="text-3xl">
         {icon}
@@ -616,44 +596,8 @@ function Feature({
         {text}
       </p>
 
-      {(isCareerTest || isUniversity || isScholarship) && (
-        <div className="mt-5 text-sm font-semibold text-purple-400">
-          {isCareerTest
-            ? "Career Test бастау →"
-            : isUniversity
-            ? "Университеттерді көру →"
-            : "Стипендияларды көру →"}
-        </div>
-      )}
-
     </div>
   );
-
-  if (isCareerTest) {
-    return (
-      <Link href="/payment" className="block">
-        {card}
-      </Link>
-    );
-  }
-
-  if (isUniversity) {
-    return (
-      <Link href="/universities" className="block">
-        {card}
-      </Link>
-    );
-  }
-
-  if (isScholarship) {
-    return (
-      <Link href="/scholarships" className="block">
-        {card}
-      </Link>
-    );
-  }
-
-  return card;
 }
 
 function Step({
